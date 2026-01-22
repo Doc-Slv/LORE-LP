@@ -1,23 +1,28 @@
+
 export interface UniverseData {
   id: number;
   title: string;
   tagline: string;
   image: string;
   tags: string[];
-  desc: string;
+  desc: string; // Description courte pour les cards
+  fullDescription?: string; // Description longue pour la page de détail
   difficulty: 'Découverte' | 'Initié' | 'Expert';
-  // Nouvelles propriétés pour le style "Listing Escape Game"
   stats: {
-    search: number; // Sur 5 (Fouille)
-    manipulation: number; // Sur 5
-    reasoning: number; // Sur 5 (Réflexion)
+    search: number;
+    manipulation: number;
+    reasoning: number;
   };
   specs: {
     surface: string;
     players: string;
-    tech: string[]; // ex: "RFID", "Maglocks", "Audio"
+    tech: string[];
   };
-  storyHook: string; // Le pitch narratif
+  storyHook: string;
+  // Nouveaux champs pour le détail
+  gameplayFeatures?: string[]; // Liste des interactions clés
+  atmosphere?: string[]; // Mots clés d'ambiance
+  hardwareDetails?: string; // Description technique B2B
 }
 
 export interface LeadFormData {

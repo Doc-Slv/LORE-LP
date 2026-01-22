@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { ArrowLeft, Brain, Hand, Search, Box, Eye, Zap, Wifi, Speaker, Lightbulb } from 'lucide-react';
 import { SectionTitle } from '../components/SectionTitle';
@@ -63,19 +64,21 @@ export const UniversesPage: React.FC = () => {
               
               {/* Image Side - Animated Reveal */}
               <div className={`w-full lg:w-1/2 relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-sm border-b md:border border-white/5 shadow-2xl reveal group cursor-pointer ${index % 2 !== 0 ? 'lg:order-last' : ''}`}>
-                <div className="absolute inset-0 bg-lore-main/20 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
-                <img 
-                  src={u.image} 
-                  alt={u.title} 
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 filter brightness-90 group-hover:brightness-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-lore-main via-transparent to-transparent opacity-60"></div>
-                
-                {/* Badge Difficulty - Slide In */}
-                <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-lore-gold/30 px-3 py-2 md:px-4 md:py-2 flex items-center gap-2 transform -translate-y-10 opacity-0 group-[.active]:translate-y-0 group-[.active]:opacity-100 transition-all duration-700 delay-500">
-                    <Brain size={14} className="text-lore-gold"/>
-                    <span className="text-[0.6rem] md:text-xs font-bold text-white uppercase tracking-widest">{u.difficulty}</span>
-                </div>
+                <Link to={`/univers/${u.id}`} className="block h-full w-full">
+                    <div className="absolute inset-0 bg-lore-main/20 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
+                    <img 
+                      src={u.image} 
+                      alt={u.title} 
+                      className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 filter brightness-90 group-hover:brightness-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-lore-main via-transparent to-transparent opacity-60"></div>
+                    
+                    {/* Badge Difficulty - Slide In */}
+                    <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-lore-gold/30 px-3 py-2 md:px-4 md:py-2 flex items-center gap-2 transform -translate-y-10 opacity-0 group-[.active]:translate-y-0 group-[.active]:opacity-100 transition-all duration-700 delay-500">
+                        <Brain size={14} className="text-lore-gold"/>
+                        <span className="text-[0.6rem] md:text-xs font-bold text-white uppercase tracking-widest">{u.difficulty}</span>
+                    </div>
+                </Link>
               </div>
 
               {/* Content Side - Staggered Reveals */}
@@ -134,9 +137,11 @@ export const UniversesPage: React.FC = () => {
                 </div>
 
                 <div className="flex justify-start reveal delay-700">
-                    <GoldButton href="#contact" variant="outline" className="w-full md:w-auto">
-                        Demander un devis pour {u.title}
-                    </GoldButton>
+                    <Link to={`/univers/${u.id}`} className="w-full md:w-auto">
+                        <GoldButton variant="outline" className="w-full">
+                            En savoir plus
+                        </GoldButton>
+                    </Link>
                 </div>
               </div>
             </div>

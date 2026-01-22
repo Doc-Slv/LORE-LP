@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { UniverseData } from '../types';
 
 interface ModuleCardProps {
@@ -8,7 +10,7 @@ interface ModuleCardProps {
 
 export const ModuleCard: React.FC<ModuleCardProps> = ({ universe }) => {
   return (
-    <div className="group relative h-[450px] md:h-[500px] w-full cursor-pointer overflow-hidden border border-white/5 bg-lore-main reveal">
+    <Link to={`/univers/${universe.id}`} className="block group relative h-[450px] md:h-[500px] w-full cursor-pointer overflow-hidden border border-white/5 bg-lore-main reveal">
       {/* Background Image with Zoom Effect */}
       <div className="absolute inset-0 w-full h-full">
         <img 
@@ -64,6 +66,6 @@ export const ModuleCard: React.FC<ModuleCardProps> = ({ universe }) => {
 
       {/* Hover Borders */}
       <div className="absolute inset-0 border border-lore-gold/0 transition-colors duration-500 group-hover:border-lore-gold/30 pointer-events-none"></div>
-    </div>
+    </Link>
   );
 };

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Smartphone, Zap, Box, Key, Eye, Lock, Phone, Mail, MapPin, ChevronDown, CheckCircle2, ArrowRight, ShieldCheck, Cpu, RefreshCw, Hammer, Signal, Settings } from 'lucide-react';
@@ -8,6 +9,7 @@ import { Logo } from './components/Logo';
 import { sendLeadForm } from './services/leadService';
 import { UNIVERSES_DATA } from './data';
 import { UniversesPage } from './pages/UniversesPage';
+import { UniverseDetailPage } from './pages/UniverseDetailPage';
 
 // -- COMPONENT: Scroll Reveal Helper --
 const useScrollReveal = () => {
@@ -652,6 +654,7 @@ const ScrollAwareApp = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/univers" element={<UniversesPage />} />
+                <Route path="/univers/:id" element={<UniverseDetailPage />} />
             </Routes>
             <Footer />
         </div>
