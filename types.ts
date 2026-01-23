@@ -23,6 +23,7 @@ export interface UniverseData {
   gameplayFeatures?: string[]; // Liste des interactions clés
   atmosphere?: string[]; // Mots clés d'ambiance
   hardwareDetails?: string; // Description technique B2B
+  gallery?: string[]; // Images additionnelles pour l'immersion
 }
 
 export interface LeadFormData {

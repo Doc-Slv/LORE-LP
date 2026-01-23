@@ -1,173 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LORE | L'Architecture du Secret</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              lore: {
-                main: '#050a14', // Plus sombre, presque noir
-                secondary: '#0F172A', // L'ancien main devient secondaire
-                gold: '#E5C15D', // Or plus élégant, moins jaune
-                'gold-light': '#FCE7A1',
-                light: '#E2E8F0',
-                muted: '#94A3B8',
-                surface: '#111827',
-              }
-            },
-            fontFamily: {
-              serif: ['Cinzel', 'serif'],
-              sans: ['Montserrat', 'sans-serif'],
-            },
-            backgroundImage: {
-              'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
-              'gold-gradient': 'linear-gradient(135deg, #E5C15D 0%, #BFA040 100%)',
-              'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
-            },
-            animation: {
-              'fade-up': 'fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
-              'fade-in': 'fadeIn 1.5s ease-out forwards',
-              'glow': 'glow 4s ease-in-out infinite',
-              'expand-width': 'expandWidth 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
-              'shimmer': 'shimmer 3s linear infinite',
-              'draw': 'draw 2s ease-out forwards',
-            },
-            keyframes: {
-              fadeUp: {
-                '0%': { opacity: '0', transform: 'translateY(40px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              glow: {
-                '0%, 100%': { opacity: '0.5' },
-                '50%': { opacity: '0.8' },
-              },
-              expandWidth: {
-                '0%': { width: '0%', opacity: '0' },
-                '100%': { width: '100%', opacity: '1' },
-              },
-              shimmer: {
-                '0%': { transform: 'translateX(-100%)' },
-                '100%': { transform: 'translateX(100%)' },
-              },
-              draw: {
-                '0%': { strokeDashoffset: '1000' },
-                '100%': { strokeDashoffset: '0' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      /* Global Reset & Base */
-      body {
-        background-color: #050a14;
-      }
-      
-      /* Grain Texture Overlay */
-      .bg-noise {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 50;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-        opacity: 0.4;
-      }
 
-      /* Luxury Scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #050a14;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155; 
-        border-radius: 3px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #E5C15D;
-      }
-      
-      /* Utilities */
-      .text-gold-gradient {
-        background: linear-gradient(to right, #FCE7A1, #E5C15D, #BFA040, #E5C15D);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        background-size: 200% auto;
-        animation: shine 6s linear infinite;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LORE | L'Architecture du Secret</title>
 
-      .glass-panel {
-        background: rgba(17, 24, 39, 0.4);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      @keyframes shine {
-        to {
-          background-position: 200% center;
-        }
-      }
-      
-      /* Reveal Animation Utility Class */
-      /* Refined for smoother entry */
-      .reveal {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-      }
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      
-      /* Specific delays for staggering */
-      .delay-100 { transition-delay: 100ms; }
-      .delay-200 { transition-delay: 200ms; }
-      .delay-300 { transition-delay: 300ms; }
-      .delay-400 { transition-delay: 400ms; }
-      .delay-500 { transition-delay: 500ms; }
-      .delay-700 { transition-delay: 700ms; }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.2.0",
-    "react": "https://esm.sh/react@18.2.0",
-    "react/": "https://esm.sh/react@18.2.0/",
-    "react-dom": "https://esm.sh/react-dom@18.2.0?deps=react@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?deps=react@18.2.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@18.2.0,react-dom@18.2.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-  }
-}
-</script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Montserrat:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
-  <body class="bg-lore-main text-lore-light antialiased overflow-x-hidden">
-    <div id="root"></div>
-    <!-- Noise texture overlay -->
-    <div class="bg-noise"></div>
-  </body>
+
+<body class="bg-lore-main text-lore-light antialiased overflow-x-hidden">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+  <!-- Noise texture overlay -->
+  <div class="bg-noise"></div>
+</body>
+
 </html>
