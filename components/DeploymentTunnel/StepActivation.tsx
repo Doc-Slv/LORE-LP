@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 import { Analytics } from '../../services/Analytics';
 import { Loader2, AlertCircle, Sparkles, Check } from 'lucide-react';
 import { DeploymentData } from '../../pages/DeploymentPage';
+import { Toast } from '../Toast';
 
 interface StepActivationProps {
     fullData: DeploymentData;
@@ -13,6 +14,15 @@ interface StepActivationProps {
 
 export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack, onSuccess }) => {
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+    const [toast, setToast] = useState<{ visible: boolean; message: string; type: 'success' | 'error' | 'info' }>({
+        visible: false,
+        message: '',
+        type: 'info'
+    });
+
+    const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+        setToast({ visible: true, message, type });
+    };
 
     const handleDeploy = async () => {
         setStatus('sending');
@@ -29,6 +39,7 @@ export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack
         } catch (error) {
             console.error('Deployment failed:', error);
             setStatus('error');
+            showToast("Échec de la transmission. Le canal est instable.", 'error');
             Analytics.trackEvent('deployment_error', { error: String(error) });
         }
     };
@@ -145,13 +156,6 @@ export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack
                 </div>
             </div>
 
-            {status === 'error' && (
-                <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded">
-                    <AlertCircle size={20} />
-                    <p>Transmission interrompue. Signal perdu. Veuillez réessayer.</p>
-                </div>
-            )}
-
             <div className="flex justify-between items-center pt-8">
                 <button
                     onClick={onBack}
@@ -167,6 +171,13 @@ export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack
                     LANCER DÉPLOIEMENT
                 </button>
             </div>
+
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                isVisible={toast.visible}
+                onClose={() => setToast({ ...toast, visible: false })}
+            />
         </motion.div>
     );
 };

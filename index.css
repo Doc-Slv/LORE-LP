@@ -16,6 +16,16 @@
   body {
     @apply bg-lore-main text-lore-light antialiased overflow-x-hidden;
   }
+
+  /* Prevent iOS Zoom on inputs */
+  @media screen and (max-width: 768px) {
+
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
 }
 
 

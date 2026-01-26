@@ -14,22 +14,36 @@ export const StepModule: React.FC<StepModuleProps> = ({ selectedModule, onSelect
     const [hoveredId, setHoveredId] = useState<number | null>(null);
     const videoRefs = useRef<{ [key: number]: HTMLVideoElement }>({});
 
+    // Effect to play/pause videos based on hover OR selection status
+    React.useEffect(() => {
+        UNIVERSES_DATA.forEach((universe) => {
+            const video = videoRefs.current[universe.id];
+            if (!video) return;
+
+            const isHovered = hoveredId === universe.id;
+            const isSelected = selectedModule === universe.title;
+            const shouldPlay = isHovered || isSelected;
+
+            if (shouldPlay) {
+                // Only play if not already playing to avoid stutter
+                if (video.paused) {
+                    video.currentTime = 0;
+                    video.play().catch(e => console.log("Autoplay prevented", e));
+                }
+            } else {
+                if (!video.paused) {
+                    video.pause();
+                }
+            }
+        });
+    }, [hoveredId, selectedModule]);
+
     const handleMouseEnter = (id: number) => {
         setHoveredId(id);
-        const video = videoRefs.current[id];
-        if (video) {
-            video.currentTime = 0;
-            video.play().catch(e => console.log("Autoplay prevented", e));
-        }
     };
 
     const handleMouseLeave = (id: number) => {
         setHoveredId(null);
-        const video = videoRefs.current[id];
-        if (video) {
-            video.pause();
-            video.currentTime = 0;
-        }
     };
 
     return (
@@ -56,8 +70,8 @@ export const StepModule: React.FC<StepModuleProps> = ({ selectedModule, onSelect
                             onMouseEnter={() => handleMouseEnter(universe.id)}
                             onMouseLeave={() => handleMouseLeave(universe.id)}
                             className={`cursor-pointer group relative overflow-hidden rounded-lg border transition-all duration-300 h-48 ${isSelected
-                                    ? 'border-lore-gold shadow-[0_0_15px_rgba(229,193,93,0.3)]'
-                                    : 'border-lore-muted/20 hover:border-lore-gold/50'
+                                ? 'border-lore-gold shadow-[0_0_15px_rgba(229,193,93,0.3)]'
+                                : 'border-lore-muted/20 hover:border-lore-gold/50'
                                 }`}
                         >
                             {/* Background Image (Default) */}
@@ -70,10 +84,11 @@ export const StepModule: React.FC<StepModuleProps> = ({ selectedModule, onSelect
                                 <video
                                     ref={el => { if (el) videoRefs.current[universe.id] = el }}
                                     src={universe.videoUrl}
+                                    poster={universe.image}
                                     loop
                                     muted
                                     playsInline
-                                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-60' : 'opacity-0'}`}
+                                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered || isSelected ? 'opacity-60' : 'opacity-0'}`}
                                 />
                             )}
 
@@ -112,8 +127,8 @@ export const StepModule: React.FC<StepModuleProps> = ({ selectedModule, onSelect
                     onClick={onNext}
                     disabled={!selectedModule}
                     className={`px-8 py-3 font-serif tracking-widest transition-all duration-300 ${selectedModule
-                            ? 'bg-lore-gold text-lore-main hover:bg-lore-gold-light shadow-[0_0_20px_rgba(229,193,93,0.3)]'
-                            : 'bg-lore-surface text-lore-muted cursor-not-allowed opacity-50'
+                        ? 'bg-lore-gold text-lore-main hover:bg-lore-gold-light shadow-[0_0_20px_rgba(229,193,93,0.3)]'
+                        : 'bg-lore-surface text-lore-muted cursor-not-allowed opacity-50'
                         }`}
                 >
                     INITIALISER TRANSFERT &rarr;

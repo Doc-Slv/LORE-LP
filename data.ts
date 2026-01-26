@@ -27,7 +27,7 @@ export const UNIVERSES_DATA: UniverseData[] = [
     ],
     atmosphere: ["Alerte Rouge", "Fumée Cryogénique", "Synthwave", "Métal Froid"],
     hardwareDetails: "Le kit inclut 4 panneaux muraux 'SpaceHull' avec LEDs adressables intégrées, un module 'Console Centrale' remplaçant un bureau standard, et un système audio 5.1 dissimulé.",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-sci-fi-corridor-loop-1845-large.mp4"
+    videoUrl: "/assets/videos/galactic-wars.mp4"
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ export const UNIVERSES_DATA: UniverseData[] = [
     ],
     atmosphere: ["Bois Ancien", "Parchemin", "Crépitement de Feu", "Mystère"],
     hardwareDetails: "Bibliothèque en chêne avec servomoteurs silencieux. Cadres numériques dissimulés dans des miroirs sans tain. Système de diffusion d'odeur 'Vieux Livre' et 'Cire'.",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-fire-burning-in-a-fireplace-close-up-16524-large.mp4"
+    videoUrl: "/assets/videos/magic-school.mp4"
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ export const UNIVERSES_DATA: UniverseData[] = [
     ],
     atmosphere: ["Zen", "Organique", "Bioluminescence", "Sérénité"],
     hardwareDetails: "Tête de lit avec fibre optique tissée. Capteurs capacitifs invisibles sous des surfaces en bois brut. Projecteur laser ciel étoilé intégré aux corniches.",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-magical-mystic-forest-96-large.mp4"
+    videoUrl: "/assets/videos/pandora.mp4"
   },
   {
     id: 4,
@@ -108,7 +108,7 @@ export const UNIVERSES_DATA: UniverseData[] = [
     ],
     atmosphere: ["Velours Rouge", "Or", "Jazz Lounge", "Intimité"],
     hardwareDetails: "Coffre-fort à ouverture décalée. Miroir connecté. Lit à baldaquin avec structure renforcée et éclairage LED indirect. Isolation phonique renforcée.",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-red-rose-petals-falling-slowly-3617-large.mp4"
+    videoUrl: "/assets/videos/suite-venus.mp4"
   },
   {
     id: 5,
@@ -135,6 +135,6 @@ export const UNIVERSES_DATA: UniverseData[] = [
     ],
     atmosphere: ["Industriel", "Clignotements", "Sons 3D", "Angoisse"],
     hardwareDetails: "Système de jets d'air (Air Blasts) dans les plinthes. Éclairage stroboscopique DMX. Haut-parleurs vibrants dans le sol. Verrouillage magnétique de sécurité 'Panic Release'.",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-haunted-abandoned-house-41460-large.mp4"
+    videoUrl: "/assets/videos/darkness.mp4"
   }
 ];
