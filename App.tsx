@@ -10,6 +10,8 @@ import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { PageTransition } from './components/PageTransition';
 import { BackgroundEffect } from './components/BackgroundEffect';
 import { ScrollToTop } from './components/ScrollToTop';
+import { DeploymentPage } from './pages/DeploymentPage';
+import { Analytics } from './services/Analytics';
 
 // Separate component to use Router hooks
 const ScrollAwareApp = () => {
@@ -46,6 +48,11 @@ const ScrollAwareApp = () => {
                             <UniverseDetailPage />
                         </PageTransition>
                     } />
+                    <Route path="/deploy" element={
+                        <PageTransition>
+                            <DeploymentPage />
+                        </PageTransition>
+                    } />
                 </Routes>
             </AnimatePresence>
             <Footer />
@@ -54,6 +61,10 @@ const ScrollAwareApp = () => {
 }
 
 export default function App() {
+    React.useEffect(() => {
+        Analytics.init();
+    }, []);
+
     return (
         <Router>
             <ScrollAwareApp />

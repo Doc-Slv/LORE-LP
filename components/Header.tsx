@@ -56,6 +56,8 @@ export const Header: React.FC = () => {
         open: { x: 0, opacity: 1 }
     };
 
+    if (location.pathname === '/deploy') return null;
+
     return (
         <motion.header
             variants={{
@@ -102,11 +104,12 @@ export const Header: React.FC = () => {
                     ))}
                     <div className="h-6 w-[1px] bg-white/10 mx-2"></div>
                     <div className="cursor-hover">
-                        <GoldButton href="/#contact" variant="outline" size="normal">Demander un devis</GoldButton>
+                        <Link to="/deploy">
+                            <GoldButton variant="outline" size="normal">Demander un devis</GoldButton>
+                        </Link>
                     </div>
                 </nav>
 
-                {/* Mobile Toggle */}
                 <button
                     className="md:hidden text-lore-gold p-2 relative z-50 focus:outline-none cursor-hover"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -152,7 +155,9 @@ export const Header: React.FC = () => {
                         ))}
                         <motion.div variants={linkVariants} className="w-12 h-[1px] bg-white/10 my-4"></motion.div>
                         <motion.div variants={linkVariants}>
-                            <GoldButton href="/#contact" onClick={() => setMobileMenuOpen(false)} size="large" className="w-full max-w-xs cursor-hover">Demander un devis</GoldButton>
+                            <Link to="/deploy" onClick={() => setMobileMenuOpen(false)}>
+                                <GoldButton size="large" className="w-full max-w-xs cursor-hover">Demander un devis</GoldButton>
+                            </Link>
                         </motion.div>
                     </motion.div>
                 )}
