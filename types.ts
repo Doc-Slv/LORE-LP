@@ -24,6 +24,7 @@ export interface UniverseData {
   atmosphere?: string[]; // Mots clés d'ambiance
   hardwareDetails?: string; // Description technique B2B
   gallery?: string[]; // Images additionnelles pour l'immersion
+  videoUrl?: string; // Teaser vidéo optionnel
 }
 
 export interface LeadFormData {

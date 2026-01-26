@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { UNIVERSES_DATA } from '../../data';
-import { Check } from 'lucide-react';
+import { Check, Play } from 'lucide-react';
 
 interface StepModuleProps {
     selectedModule: string;
@@ -11,6 +11,27 @@ interface StepModuleProps {
 }
 
 export const StepModule: React.FC<StepModuleProps> = ({ selectedModule, onSelect, onBack, onNext }) => {
+    const [hoveredId, setHoveredId] = useState<number | null>(null);
+    const videoRefs = useRef<{ [key: number]: HTMLVideoElement }>({});
+
+    const handleMouseEnter = (id: number) => {
+        setHoveredId(id);
+        const video = videoRefs.current[id];
+        if (video) {
+            video.currentTime = 0;
+            video.play().catch(e => console.log("Autoplay prevented", e));
+        }
+    };
+
+    const handleMouseLeave = (id: number) => {
+        setHoveredId(null);
+        const video = videoRefs.current[id];
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -26,30 +47,50 @@ export const StepModule: React.FC<StepModuleProps> = ({ selectedModule, onSelect
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                 {UNIVERSES_DATA.map((universe) => {
                     const isSelected = selectedModule === universe.title;
+                    const isHovered = hoveredId === universe.id;
+
                     return (
                         <div
                             key={universe.id}
                             onClick={() => onSelect(universe.title)}
-                            className={`cursor-pointer group relative overflow-hidden rounded-lg border transition-all duration-300 ${isSelected
+                            onMouseEnter={() => handleMouseEnter(universe.id)}
+                            onMouseLeave={() => handleMouseLeave(universe.id)}
+                            className={`cursor-pointer group relative overflow-hidden rounded-lg border transition-all duration-300 h-48 ${isSelected
                                     ? 'border-lore-gold shadow-[0_0_15px_rgba(229,193,93,0.3)]'
                                     : 'border-lore-muted/20 hover:border-lore-gold/50'
                                 }`}
                         >
-                            {/* Background Image / Overlay */}
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-40 mix-blend-overlay"
+                            {/* Background Image (Default) */}
+                            <div className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ${isHovered ? 'scale-110 opacity-0' : 'scale-100 opacity-40 mix-blend-overlay'}`}
                                 style={{ backgroundImage: `url(${universe.image})` }}
                             />
-                            <div className={`absolute inset-0 transition-opacity duration-300 ${isSelected ? 'bg-lore-gold/10' : 'bg-lore-main/80 group-hover:bg-lore-main/60'}`} />
 
-                            <div className="relative p-4 h-full flex flex-col justify-end">
+                            {/* Video Teaser (On Hover) */}
+                            {universe.videoUrl && (
+                                <video
+                                    ref={el => { if (el) videoRefs.current[universe.id] = el }}
+                                    src={universe.videoUrl}
+                                    loop
+                                    muted
+                                    playsInline
+                                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-60' : 'opacity-0'}`}
+                                />
+                            )}
+
+                            {/* Color Overlay */}
+                            <div className={`absolute inset-0 transition-opacity duration-300 ${isSelected ? 'bg-lore-gold/10' : 'bg-lore-main/80 group-hover:bg-lore-main/40'}`} />
+
+                            {/* Content */}
+                            <div className="relative p-4 h-full flex flex-col justify-end pointer-events-none">
                                 <div className="flex justify-between items-start mb-2">
-                                    <h3 className={`font-serif text-lg ${isSelected ? 'text-lore-gold' : 'text-lore-light'}`}>{universe.title}</h3>
+                                    <h3 className={`font-serif text-lg ${isSelected ? 'text-lore-gold' : 'text-lore-light group-hover:text-white'}`}>{universe.title}</h3>
                                     {isSelected && <Check size={18} className="text-lore-gold" />}
+                                    {!isSelected && isHovered && <Play size={18} className="text-lore-gold animate-pulse" />}
                                 </div>
-                                <p className="text-xs text-lore-muted line-clamp-2">{universe.desc}</p>
+                                <p className="text-xs text-lore-muted line-clamp-2 mix-blend-plus-lighter">{universe.desc}</p>
                                 <div className="mt-2 flex gap-2 flex-wrap">
                                     {universe.tags.slice(0, 2).map((tag, i) => (
-                                        <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-lore-gold/10 text-lore-gold/80 border border-lore-gold/20">
+                                        <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-lore-gold/10 text-lore-gold/80 border border-lore-gold/20 backdrop-blur-sm">
                                             {tag}
                                         </span>
                                     ))}

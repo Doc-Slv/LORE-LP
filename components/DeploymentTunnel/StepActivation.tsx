@@ -8,9 +8,10 @@ import { DeploymentData } from '../../pages/DeploymentPage';
 interface StepActivationProps {
     fullData: DeploymentData;
     onBack: () => void;
+    onSuccess?: () => void;
 }
 
-export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack }) => {
+export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack, onSuccess }) => {
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
     const handleDeploy = async () => {
@@ -24,6 +25,7 @@ export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack
                 type: fullData.receptacle.type
             });
             setStatus('success');
+            if (onSuccess) onSuccess();
         } catch (error) {
             console.error('Deployment failed:', error);
             setStatus('error');
@@ -76,18 +78,17 @@ export const StepActivation: React.FC<StepActivationProps> = ({ fullData, onBack
                     </h2>
                     <p className="text-lore-muted max-w-lg mx-auto leading-relaxed">
                         Le protocole a été initié avec succès. Nos agents logistiques sont en train de décrypter vos coordonnées (Secteur {fullData.receptacle.surface}m²).
-                        <br /><br />
-                        <span className="text-lore-gold">Communication attendue sous 24h.</span>
                     </p>
                 </motion.div>
 
+                {/* Growth buttons: Home */}
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="mt-12"
+                    className="mt-12 flex flex-col md:flex-row gap-4 items-center"
                 >
-                    <a href="/" className="group relative inline-flex items-center gap-3 px-8 py-4 bg-lore-gold/10 hover:bg-lore-gold/20 mr-4 transition-all border border-lore-gold/30 hover:border-lore-gold/60 text-lore-gold tracking-[0.2em] text-xs font-bold uppercase rounded-sm overflow-hidden">
+                    <a href="/" className="group relative inline-flex items-center gap-3 px-8 py-4 bg-lore-gold/10 hover:bg-lore-gold/20 transition-all border border-lore-gold/30 hover:border-lore-gold/60 text-lore-gold tracking-[0.2em] text-xs font-bold uppercase rounded-sm overflow-hidden">
                         <span className="relative z-10 w-full text-center">RETOUR À LA RÉALITÉ</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-lore-gold/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                     </a>

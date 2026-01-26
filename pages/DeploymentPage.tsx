@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TunnelLayout } from '../components/DeploymentTunnel/TunnelLayout';
 import { StepInitiator } from '../components/DeploymentTunnel/StepInitiator';
@@ -6,6 +6,7 @@ import { StepReceptacle } from '../components/DeploymentTunnel/StepReceptacle';
 import { StepModule } from '../components/DeploymentTunnel/StepModule';
 import { StepActivation } from '../components/DeploymentTunnel/StepActivation';
 import { Analytics } from '../services/Analytics';
+import { ExitIntentModal } from '../components/ExitIntentModal';
 
 export type DeploymentData = {
     step: number;
@@ -32,6 +33,9 @@ const initialData: DeploymentData = {
 
 export const DeploymentPage = () => {
     const [data, setData] = useState<DeploymentData>(initialData);
+    const [showExitModal, setShowExitModal] = useState(false);
+    const [hasTriggeredExit, setHasTriggeredExit] = useState(false);
+    const [isCompleted, setIsCompleted] = useState(false);
 
     const updateData = (section: keyof DeploymentData, payload: any) => {
         setData(prev => ({ ...prev, [section]: payload }));
@@ -48,12 +52,39 @@ export const DeploymentPage = () => {
         setData(prev => ({ ...prev, step: prev.step - 1 }));
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         Analytics.trackPage('/deploy');
     }, []);
 
+    // Handle Exit Intent (Mouse Leave)
+    useEffect(() => {
+        const handleMouseLeave = (e: MouseEvent) => {
+            if (e.clientY <= 0 && !hasTriggeredExit && !isCompleted) {
+                setShowExitModal(true);
+                setHasTriggeredExit(true); // Only trigger once automatically
+                Analytics.trackEvent('exit_intent_triggered');
+            }
+        };
+
+        document.addEventListener('mouseleave', handleMouseLeave);
+        return () => document.removeEventListener('mouseleave', handleMouseLeave);
+    }, [hasTriggeredExit, isCompleted]);
+
+    // Handle Manual Exit (Button Click)
+    const handleAbort = () => {
+        if (isCompleted) {
+            window.location.href = '/';
+        } else {
+            setShowExitModal(true);
+        }
+    };
+
     return (
-        <TunnelLayout currentStep={data.step} totalSteps={4}>
+        <TunnelLayout
+            currentStep={data.step}
+            totalSteps={4}
+            onAbort={handleAbort}
+        >
             <AnimatePresence mode='wait'>
                 {data.step === 1 && (
                     <StepInitiator
@@ -86,9 +117,14 @@ export const DeploymentPage = () => {
                         key="step4"
                         fullData={data}
                         onBack={prevStep}
+                        onSuccess={() => setIsCompleted(true)}
                     />
                 )}
             </AnimatePresence>
+            <ExitIntentModal
+                isOpen={showExitModal}
+                onClose={() => setShowExitModal(false)}
+            />
         </TunnelLayout>
     );
 };

@@ -7,9 +7,10 @@ interface TunnelLayoutProps {
     children: React.ReactNode;
     currentStep: number;
     totalSteps: number;
+    onAbort?: () => void;
 }
 
-export const TunnelLayout: React.FC<TunnelLayoutProps> = ({ children, currentStep, totalSteps }) => {
+export const TunnelLayout: React.FC<TunnelLayoutProps> = ({ children, currentStep, totalSteps, onAbort }) => {
     const progress = (currentStep / totalSteps) * 100;
 
     return (
@@ -22,10 +23,13 @@ export const TunnelLayout: React.FC<TunnelLayoutProps> = ({ children, currentSte
 
             {/* Header / HUD */}
             <header className="relative z-10 p-6 flex justify-between items-center border-b border-lore-gold/10 backdrop-blur-sm">
-                <Link to="/" className="flex items-center gap-2 text-lore-gold/80 hover:text-lore-gold transition-colors font-serif tracking-widest text-sm">
+                <button
+                    onClick={onAbort}
+                    className="flex items-center gap-2 text-lore-gold/80 hover:text-lore-gold transition-colors font-serif tracking-widest text-sm hover:opacity-80"
+                >
                     <ChevronLeft size={16} />
                     ANNULER PROTOCOLE
-                </Link>
+                </button>
                 <div className="font-mono text-xs text-lore-muted tracking-[0.2em]">
                     CONNEXION SÉCURISÉE // CHIFFRÉE
                 </div>
