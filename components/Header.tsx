@@ -27,9 +27,9 @@ export const Header: React.FC = () => {
     });
 
     const navLinks = [
-        { name: 'Le Concept', href: '/#concept', isAnchor: true },
+        { name: 'Le Concept', href: '/concept', isAnchor: false },
         { name: 'Nos Univers', href: '/univers', isAnchor: false },
-        { name: 'Pour Qui ?', href: '/#targets', isAnchor: true },
+        { name: 'Pour Qui ?', href: '/pour-qui', isAnchor: false },
     ];
 
     const menuVariants = {

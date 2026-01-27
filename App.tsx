@@ -11,6 +11,8 @@ import { PageTransition } from './components/PageTransition';
 import { BackgroundEffect } from './components/BackgroundEffect';
 import { ScrollToTop } from './components/ScrollToTop';
 import { DeploymentPage } from './pages/DeploymentPage';
+import { ConceptPage } from './pages/ConceptPage';
+import { TargetPage } from './pages/TargetPage';
 import { Analytics } from './services/Analytics';
 
 // Separate component to use Router hooks
@@ -46,6 +48,16 @@ const ScrollAwareApp = () => {
                     <Route path="/univers/:id" element={
                         <PageTransition>
                             <UniverseDetailPage />
+                        </PageTransition>
+                    } />
+                    <Route path="/concept" element={
+                        <PageTransition>
+                            <ConceptPage />
+                        </PageTransition>
+                    } />
+                    <Route path="/pour-qui" element={
+                        <PageTransition>
+                            <TargetPage />
                         </PageTransition>
                     } />
                     <Route path="/deploy" element={
