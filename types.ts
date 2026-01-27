@@ -1,3 +1,10 @@
+// Custom Window extensions
+declare global {
+  interface Window {
+    mouseX?: number;
+    mouseY?: number;
+  }
+}
 
 export interface UniverseData {
   id: number;

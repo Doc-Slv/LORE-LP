@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
                 <img
                     src="/assets/hero_secret.png"
                     alt="Bureau Secret LORE - Dark"
-                    className="w-full h-full object-cover object-center filter grayscale brightness-[0.25] contrast-125 scale-105"
+                    className="w-full h-full object-cover object-center filter grayscale brightness-[0.25] contrast-125 scale-105 animate-breathing"
                 />
             </div>
 
