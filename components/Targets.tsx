@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Zap, Eye, CheckCircle2 } from 'lucide-react';
 import { SectionTitle } from './SectionTitle';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+
+const Counter: React.FC<{ value: number, suffix?: string }> = ({ value, suffix = '' }) => {
+    const ref = useRef(null);
+    const motionValue = useMotionValue(0);
+    const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+    useEffect(() => {
+        if (isInView) {
+            motionValue.set(value);
+        }
+    }, [isInView, value, motionValue]);
+
+    const [displayValue, setDisplayValue] = React.useState(0);
+
+    useEffect(() => {
+        return springValue.on("change", (latest) => {
+            setDisplayValue(Math.floor(latest));
+        });
+    }, [springValue]);
+
+    return <span ref={ref}>{displayValue}{suffix}</span>;
+};
 
 export const Targets: React.FC = () => {
     return (
@@ -83,7 +107,7 @@ export const Targets: React.FC = () => {
                             <ul className="space-y-4 border-t border-white/5 pt-6 mt-auto">
                                 <li className="flex items-start gap-3 text-sm text-lore-light/70 group-hover:text-lore-light transition-colors duration-300">
                                     <CheckCircle2 className="w-5 h-5 text-lore-gold shrink-0 mt-0.5" />
-                                    <span><span className="text-white font-medium">+20% à +30%</span> sur le prix nuitée</span>
+                                    <span><span className="text-white font-medium">+<Counter value={30} suffix='%' /></span> sur le prix nuitée</span>
                                 </li>
                                 <li className="flex items-start gap-3 text-sm text-lore-light/70 group-hover:text-lore-light transition-colors duration-300">
                                     <CheckCircle2 className="w-5 h-5 text-lore-gold shrink-0 mt-0.5" />

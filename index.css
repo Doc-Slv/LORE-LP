@@ -323,6 +323,24 @@
     animation: grid-pulse 4s ease-in-out infinite;
   }
 
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
   @keyframes radar-beam {
     0% {
       top: -20%;
@@ -345,6 +363,11 @@
 
   .animate-radar-beam {
     animation: radar-beam 5s linear infinite;
+  }
+
+  .mask-linear-fade {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
 
   @keyframes shine {
