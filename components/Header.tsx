@@ -63,66 +63,68 @@ export const Header: React.FC = () => {
     if (location.pathname === '/deploy') return null;
 
     return (
-        <motion.header
-            variants={{
-                visible: { y: 0 },
-                hidden: { y: "-100%" },
-            }}
-            animate={hidden ? "hidden" : "visible"}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className={`fixed top-0 w-full z-50 transition-colors duration-300 border-b ${scrolled || mobileMenuOpen
-                ? 'bg-lore-main/90 backdrop-blur-md border-white/5 py-3 shadow-2xl'
-                : 'bg-transparent border-transparent py-4 md:py-6'
-                }`}
-        >
-            <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-                {/* Logo Area */}
-                <div className="flex items-center gap-4 group cursor-pointer relative z-50">
-                    <Link to="/" onClick={() => window.scrollTo(0, 0)}>
-                        <div className={`transition-all duration-300 ${scrolled ? 'w-12 md:w-14' : 'w-14 md:w-20'}`}>
-                            <Logo className="w-full" />
-                        </div>
-                    </Link>
-                </div>
-
-                {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center gap-6 lg:gap-12">
-                    {navLinks.map((link) => (
-                        link.isAnchor ? (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className="text-[0.65rem] lg:text-xs font-bold uppercase tracking-[0.15em] text-lore-muted hover:text-lore-gold transition-colors relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-lore-gold after:transition-all duration-300 hover:after:w-full cursor-hover"
-                            >
-                                {link.name}
-                            </a>
-                        ) : (
-                            <Link
-                                key={link.name}
-                                to={link.href}
-                                className="text-[0.65rem] lg:text-xs font-bold uppercase tracking-[0.15em] text-lore-muted hover:text-lore-gold transition-colors relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-lore-gold after:transition-all duration-300 hover:after:w-full cursor-hover"
-                            >
-                                {link.name}
-                            </Link>
-                        )
-                    ))}
-                    <div className="h-6 w-[1px] bg-white/10 mx-2"></div>
-                    <div className="cursor-hover">
-                        <Link to="/deploy">
-                            <GoldButton variant="outline" size="normal">Demander un devis</GoldButton>
+        <>
+            <motion.header
+                variants={{
+                    visible: { y: 0 },
+                    hidden: { y: "-100%" },
+                }}
+                animate={hidden ? "hidden" : "visible"}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className={`fixed top-0 w-full z-50 transition-colors duration-300 border-b ${scrolled || mobileMenuOpen
+                    ? 'bg-lore-main/90 backdrop-blur-md border-white/5 py-3 shadow-2xl'
+                    : 'bg-transparent border-transparent py-4 md:py-6'
+                    }`}
+            >
+                <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+                    {/* Logo Area */}
+                    <div className="flex items-center gap-4 group cursor-pointer relative z-50">
+                        <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+                            <div className={`transition-all duration-300 ${scrolled ? 'w-12 md:w-14' : 'w-14 md:w-20'}`}>
+                                <Logo className="w-full" />
+                            </div>
                         </Link>
                     </div>
-                </nav>
 
-                <button
-                    className="md:hidden text-lore-gold p-2 relative z-50 focus:outline-none cursor-hover"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
+                    {/* Desktop Nav */}
+                    <nav className="hidden md:flex items-center gap-6 lg:gap-12">
+                        {navLinks.map((link) => (
+                            link.isAnchor ? (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className="text-[0.65rem] lg:text-xs font-bold uppercase tracking-[0.15em] text-lore-muted hover:text-lore-gold transition-colors relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-lore-gold after:transition-all duration-300 hover:after:w-full cursor-hover"
+                                >
+                                    {link.name}
+                                </a>
+                            ) : (
+                                <Link
+                                    key={link.name}
+                                    to={link.href}
+                                    className="text-[0.65rem] lg:text-xs font-bold uppercase tracking-[0.15em] text-lore-muted hover:text-lore-gold transition-colors relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-lore-gold after:transition-all duration-300 hover:after:w-full cursor-hover"
+                                >
+                                    {link.name}
+                                </Link>
+                            )
+                        ))}
+                        <div className="h-6 w-[1px] bg-white/10 mx-2"></div>
+                        <div className="cursor-hover">
+                            <Link to="/deploy">
+                                <GoldButton variant="outline" size="normal">Demander un devis</GoldButton>
+                            </Link>
+                        </div>
+                    </nav>
 
-            {/* Mobile Menu */}
+                    <button
+                        className="md:hidden text-lore-gold p-2 relative z-50 focus:outline-none cursor-hover"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
+            </motion.header>
+
+            {/* Mobile Menu - Moved outside header to avoid transform stacking context */}
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
@@ -130,9 +132,10 @@ export const Header: React.FC = () => {
                         animate="open"
                         exit="closed"
                         variants={menuVariants}
-                        className="fixed inset-0 bg-lore-main z-[60] flex flex-col p-8 overflow-y-auto md:hidden pt-24"
+                        className="fixed inset-0 bg-lore-main z-[49] flex flex-col p-8 overflow-y-auto md:hidden pt-28"
                     >
-                        <div className="flex flex-col items-center justify-center min-h-[80vh] gap-8 py-10 w-full">
+                        {/* Background Overlay specifically for mobile menu if needed, but bg-lore-main handles it */}
+                        <div className="flex flex-col items-center justify-center min-h-[60vh] gap-8 py-4 w-full">
                             <motion.div variants={linkVariants} className="w-16 mb-4 opacity-80">
                                 <Logo />
                             </motion.div>
@@ -170,6 +173,6 @@ export const Header: React.FC = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.header>
+        </>
     );
 };
