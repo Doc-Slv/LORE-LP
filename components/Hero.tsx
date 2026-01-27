@@ -19,17 +19,39 @@ export const Hero: React.FC = () => {
     const textY = useTransform(springY, [0, window.innerHeight], [20, -20]);
 
     useEffect(() => {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
         };
 
-        // Center spotlight initially
-        mouseX.set(window.innerWidth / 2);
-        mouseY.set(window.innerHeight / 2);
+        if (isMobile) {
+            // Auto-scan animation for mobile
+            let angle = 0;
+            const radius = Math.min(window.innerWidth, window.innerHeight) * 0.25;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight * 0.4; // Slightly above center
 
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+            let rafId: number;
+            const animate = () => {
+                angle += 0.01;
+                const x = centerX + Math.cos(angle) * radius * 1.5; // Wider ellipse
+                const y = centerY + Math.sin(angle * 0.7) * radius; // Different frequency for Y to make it organic
+
+                mouseX.set(x);
+                mouseY.set(y);
+                rafId = requestAnimationFrame(animate);
+            };
+            animate();
+            return () => cancelAnimationFrame(rafId);
+        } else {
+            // Mouse tracking for desktop
+            mouseX.set(window.innerWidth / 2);
+            mouseY.set(window.innerHeight / 2);
+            window.addEventListener('mousemove', handleMouseMove);
+            return () => window.removeEventListener('mousemove', handleMouseMove);
+        }
     }, [mouseX, mouseY]);
 
     const containerVariants = {

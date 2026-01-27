@@ -12,9 +12,13 @@ export const Header: React.FC = () => {
     const { scrollY } = useScroll();
     const location = useLocation();
 
+    useEffect(() => {
+        setMobileMenuOpen(false);
+    }, [location]);
+
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious() || 0;
-        if (latest > previous && latest > 150) {
+        if (latest > previous && latest > 150 && !mobileMenuOpen) {
             setHidden(true);
         } else {
             setHidden(false);
