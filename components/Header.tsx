@@ -130,39 +130,43 @@ export const Header: React.FC = () => {
                         animate="open"
                         exit="closed"
                         variants={menuVariants}
-                        className="fixed inset-0 bg-lore-main z-40 flex flex-col items-center justify-center gap-8 p-6 md:hidden"
+                        className="fixed inset-0 bg-lore-main z-[60] flex flex-col p-8 overflow-y-auto md:hidden pt-24"
                     >
-                        <motion.div variants={linkVariants} className="w-20 mb-6 opacity-80">
-                            <Logo />
-                        </motion.div>
-
-                        {navLinks.map((link) => (
-                            <motion.div key={link.name} variants={linkVariants}>
-                                {link.isAnchor ? (
-                                    <a
-                                        href={link.href}
-                                        className="text-lg font-serif text-white hover:text-lore-gold tracking-widest cursor-hover"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                    >
-                                        {link.name}
-                                    </a>
-                                ) : (
-                                    <Link
-                                        to={link.href}
-                                        className="text-lg font-serif text-white hover:text-lore-gold tracking-widest cursor-hover"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                )}
+                        <div className="flex flex-col items-center justify-center min-h-[80vh] gap-8 py-10 w-full">
+                            <motion.div variants={linkVariants} className="w-16 mb-4 opacity-80">
+                                <Logo />
                             </motion.div>
-                        ))}
-                        <motion.div variants={linkVariants} className="w-12 h-[1px] bg-white/10 my-4"></motion.div>
-                        <motion.div variants={linkVariants}>
-                            <Link to="/deploy" onClick={() => setMobileMenuOpen(false)}>
-                                <GoldButton size="large" className="w-full max-w-xs cursor-hover">Demander un devis</GoldButton>
-                            </Link>
-                        </motion.div>
+
+                            {navLinks.map((link) => (
+                                <motion.div key={link.name} variants={linkVariants} className="w-full text-center">
+                                    {link.isAnchor ? (
+                                        <a
+                                            href={link.href}
+                                            className="text-2xl font-serif text-white hover:text-lore-gold tracking-[0.2em] uppercase cursor-hover py-2 block"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                        >
+                                            {link.name}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            to={link.href}
+                                            className="text-2xl font-serif text-white hover:text-lore-gold tracking-[0.2em] uppercase cursor-hover py-2 block"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    )}
+                                </motion.div>
+                            ))}
+
+                            <motion.div variants={linkVariants} className="w-12 h-[1px] bg-lore-gold/30 my-4"></motion.div>
+
+                            <motion.div variants={linkVariants} className="w-full max-w-xs mx-auto">
+                                <Link to="/deploy" onClick={() => setMobileMenuOpen(false)}>
+                                    <GoldButton size="large" className="w-full cursor-hover">Demander un devis</GoldButton>
+                                </Link>
+                            </motion.div>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
