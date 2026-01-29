@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { GoldButton } from './GoldButton';
+import { DustParticles } from './DustParticles';
 
 export const Hero: React.FC = () => {
     // Mouse tracking for spotlight effect
@@ -18,14 +19,18 @@ export const Hero: React.FC = () => {
     const textX = useTransform(springX, [0, window.innerWidth], [20, -20]);
     const textY = useTransform(springY, [0, window.innerHeight], [20, -20]);
 
+    const [isMobile, setIsMobile] = useState(false);
+
     useEffect(() => {
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-
-        const handleMouseMove = (e: MouseEvent) => {
-            mouseX.set(e.clientX);
-            mouseY.set(e.clientY);
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
         };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
+    useEffect(() => {
         if (isMobile) {
             // Auto-scan animation for mobile
             let angle = 0;
@@ -47,12 +52,19 @@ export const Hero: React.FC = () => {
             return () => cancelAnimationFrame(rafId);
         } else {
             // Mouse tracking for desktop
+            const handleMouseMove = (e: MouseEvent) => {
+                mouseX.set(e.clientX);
+                mouseY.set(e.clientY);
+            };
+
+            // Set initial position to center
             mouseX.set(window.innerWidth / 2);
             mouseY.set(window.innerHeight / 2);
+
             window.addEventListener('mousemove', handleMouseMove);
             return () => window.removeEventListener('mousemove', handleMouseMove);
         }
-    }, [mouseX, mouseY]);
+    }, [isMobile, mouseX, mouseY]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -81,9 +93,9 @@ export const Hero: React.FC = () => {
             {/* 1. Base Dark Layer (The Mystery) */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/assets/hero_secret.png"
-                    alt="Bureau Secret LORE - Dark"
-                    className="w-full h-full object-cover object-center filter grayscale brightness-[0.25] contrast-125 scale-105 animate-breathing"
+                    src="/assets/hero_immersive_space.png"
+                    alt="Salon Immersif LORE - Dark"
+                    className="w-full h-full object-cover object-center filter grayscale brightness-[0.25] contrast-125"
                 />
             </div>
 
@@ -102,10 +114,11 @@ export const Hero: React.FC = () => {
                 }}
             >
                 <img
-                    src="/assets/hero_secret.png"
-                    alt="Bureau Secret LORE - Light"
-                    className="w-full h-full object-cover object-center filter brightness-110 saturate-125 scale-105"
+                    src="/assets/hero_immersive_space.png"
+                    alt="Salon Immersif LORE - Light"
+                    className="w-full h-full object-cover object-center filter brightness-110 saturate-125"
                 />
+                <DustParticles />
                 <div className="absolute inset-0 bg-gold-500/10 mix-blend-overlay"></div>
             </motion.div>
 

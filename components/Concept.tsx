@@ -7,22 +7,21 @@ export const Concept: React.FC = () => {
     const pillars = [
         {
             icon: <Box className="w-6 h-6 text-lore-main" />,
-            title: "Mobilier Augmenté",
-            subtitle: "L'Hardware",
-            desc: "Des meubles design (bibliothèques, bureaux, chevets) fabriqués sur-mesure, intégrant des mécanismes secrets (tiroirs magnétiques, trappes) invisibles à l'œil nu."
+            title: "Modules Immersifs",
+            subtitle: "L'Intégration",
+            desc: "Ce ne sont pas des meubles. Ce sont des caissons en bois design, dissimulant serrures magnétiques et mécanismes de jeu, qui s'intègrent aveuglément à votre décoration."
         },
         {
             icon: <Smartphone className="w-6 h-6 text-lore-main" />,
-            title: "Application Compagnon",
-            subtitle: "Le Software",
-            desc: "L'interface voyageur pour recevoir les indices et progresser dans l'histoire. Pour vous : un dashboard de gestion de parc et de maintenance prédictive.",
-            highlight: false
+            title: "Maître du Jeu Digital",
+            subtitle: "L'Orchestration",
+            desc: "Notre application pilote l'expérience. Elle guide les voyageurs, diffuse les indices sonores et gère l'ambiance, transformant la nuitée en un véritable film interactif."
         },
         {
             icon: <Key className="w-6 h-6 text-lore-main" />,
-            title: "Scénarios Évolutifs",
-            subtitle: "Le Contenu",
-            desc: "Un catalogue d'histoires (Escape Game, Enquête, Romance) mis à jour à distance. Vos murs ne changent pas, l'aventure change à volonté."
+            title: "Aventures à la Carte",
+            subtitle: "Le Renouveau",
+            desc: "Escape game romantique, enquête policière ou chasse au trésor... Changez l'histoire de votre logement sans changer les murs. Un catalogue d'expériences en constante évolution."
         }
     ];
 

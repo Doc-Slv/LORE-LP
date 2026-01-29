@@ -145,6 +145,53 @@ export const ConceptPage: React.FC = () => {
                 </div>
             </div>
 
+            {/* EXPERTISE SEAL SECTION */}
+            <section className="py-20 bg-lore-main relative overflow-hidden border-t border-white/5">
+                <div className="container mx-auto px-6 relative z-10">
+                    <SectionTitle
+                        title="Le Poids de l'Experience"
+                        subtitle="Derrière chaque caisson, des centaines d'heures de R&D par de véritables experts."
+                    />
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-6xl mx-auto">
+
+                        {/* Block 1: Game Design */}
+                        <div className="p-8 border border-white/5 bg-lore-surface/50 rounded-sm hover:border-lore-gold/30 transition-colors group">
+                            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-lore-gold group-hover:text-lore-main transition-colors text-lore-gold">
+                                <Box className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-serif text-white mb-3">Game Design</h3>
+                            <p className="text-lore-muted font-light text-sm leading-relaxed">
+                                Nos scénarios ne sont pas des gadgets. Ils sont écrits par des <strong>auteurs d'Escape Game primés</strong>, garantissant une cohérence narrative et une progression ludique addictive.
+                            </p>
+                        </div>
+
+                        {/* Block 2: Immersion */}
+                        <div className="p-8 border border-white/5 bg-lore-surface/50 rounded-sm hover:border-lore-gold/30 transition-colors group">
+                            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-lore-gold group-hover:text-lore-main transition-colors text-lore-gold">
+                                <Sparkles className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-serif text-white mb-3">Light & Sound</h3>
+                            <p className="text-lore-muted font-light text-sm leading-relaxed">
+                                L'ambiance fait tout. Nos séquences lumineuses et sonores sont calibrées par des <strong>ingénieurs du spectacle</strong> pour susciter l'émotion exacte au bon moment.
+                            </p>
+                        </div>
+
+                        {/* Block 3: Conception */}
+                        <div className="p-8 border border-white/5 bg-lore-surface/50 rounded-sm hover:border-lore-gold/30 transition-colors group">
+                            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-lore-gold group-hover:text-lore-main transition-colors text-lore-gold">
+                                <Cpu className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-serif text-white mb-3">Ingénierie</h3>
+                            <p className="text-lore-muted font-light text-sm leading-relaxed">
+                                Pas de bricolage. Chaque mécanisme est un concentré de technologie industrielle miniaturisée, testé pour des milliers de cycles d'utilisation intensive.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
             {/* MISSION / SUMMARY */}
             <section className="py-24 bg-lore-secondary relative overflow-hidden text-center border-t border-white/5">
                 <div className="absolute inset-0 bg-grid-pattern opacity-10 animate-grid-pulse"></div>

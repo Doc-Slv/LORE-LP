@@ -151,42 +151,54 @@ export const UniverseDetailPage: React.FC = () => {
                 {/* GALLERY SECTION */}
                 {universe.gallery && <UniverseGallery images={universe.gallery} />}
 
-                {/* TECHNICAL SECTION (B2B FOCUS) */}
+                {/* TECHNICAL SECTION (KIT FOCUS) */}
                 <div className="mb-24 reveal">
-                    <SectionTitle title="Intégration & Hardware" subtitle="Ce que nous installons chez vous. Invisible pour le client, robuste pour l'exploitant." align="left" />
+                    <SectionTitle
+                        title={`Le Kit "${universe.title}"`}
+                        subtitle="Un caisson en bois exclusif livré chez vous. Tout le nécessaire pour transformer la pièce, sans travaux."
+                        align="left"
+                    />
 
-                    <div className="bg-lore-secondary border border-white/5 p-8 md:p-12 rounded-sm relative overflow-hidden group">
+                    <div className="bg-lore-secondary border border-white/5 p-8 md:p-12 rounded-sm relative overflow-hidden group mt-12">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-lore-gold/5 rounded-full blur-[80px] group-hover:bg-lore-gold/10 transition-colors duration-700"></div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
                             <div>
-                                <h3 className="font-serif text-2xl text-white mb-6">Le Kit "{universe.title}"</h3>
-                                <p className="text-lore-muted leading-relaxed mb-6">
-                                    {universe.hardwareDetails || "Ce module comprend l'ensemble des automates, capteurs et actionneurs nécessaires au scénario. Tout est pré-câblé en atelier."}
+                                <h3 className="font-serif text-2xl text-white mb-6 flex items-center gap-3">
+                                    <Box className="text-lore-gold" /> Contenu du Caisson
+                                </h3>
+                                <p className="text-lore-muted leading-relaxed mb-8 text-lg font-light border-l-2 border-lore-gold/30 pl-4">
+                                    {universe.hardwareDetails || "Ce module comprend l'ensemble des objets connectés nécessaires."}
                                 </p>
-                                <div className="grid grid-cols-2 gap-4">
+
+                                <h4 className="text-xs uppercase tracking-widest text-white/50 mb-4 font-bold">Technologies Embarquées</h4>
+                                <div className="grid grid-cols-2 gap-3">
                                     {universe.specs.tech.map((t, i) => (
-                                        <div key={i} className="flex items-center gap-3 bg-lore-main/50 p-3 border border-white/5">
-                                            <Zap size={16} className="text-lore-gold" />
-                                            <span className="text-xs md:text-sm text-white font-medium">{t}</span>
+                                        <div key={i} className="flex items-center gap-2 bg-lore-main/80 p-2.5 rounded-sm border border-white/5">
+                                            <Zap size={14} className="text-lore-gold shrink-0" />
+                                            <span className="text-xs text-white/90 font-medium">{t}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="border-l border-white/5 pl-0 md:pl-12 flex flex-col justify-center space-y-6">
-                                <div className="flex items-start gap-4">
-                                    <Shield className="text-green-500 w-6 h-6 shrink-0" />
+                            <div className="border-l border-white/5 pl-0 md:pl-12 flex flex-col justify-center space-y-8">
+                                <div className="flex items-start gap-5">
+                                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                                        <Zap className="text-lore-gold w-6 h-6" />
+                                    </div>
                                     <div>
-                                        <h4 className="text-white font-bold text-sm uppercase tracking-wide">Solidité Hôtelière</h4>
-                                        <p className="text-xs text-lore-muted mt-1">Conçu pour résister à une utilisation intensive. Matériaux nobles (Bois, Métal), pas de plastique fragile.</p>
+                                        <h4 className="text-white font-serif text-lg mb-1">Plug & Play</h4>
+                                        <p className="text-sm text-lore-muted leading-relaxed">Aucun travaux lourds, pas de trous dans les murs. Posez les modules, branchez sur une prise standard, et connectez au WiFi. C'est tout.</p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <Key className="text-lore-gold w-6 h-6 shrink-0" />
+                                <div className="flex items-start gap-5">
+                                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                                        <Key className="text-lore-gold w-6 h-6" />
+                                    </div>
                                     <div>
-                                        <h4 className="text-white font-bold text-sm uppercase tracking-wide">Reset Automatique</h4>
-                                        <p className="text-xs text-lore-muted mt-1">Une simple commande via l'App remet la chambre en configuration initiale pour le ménage.</p>
+                                        <h4 className="text-white font-serif text-lg mb-1">Reset Magnétique</h4>
+                                        <p className="text-sm text-lore-muted leading-relaxed">Fini le casse-tête du rangement. Les objets interactifs se verrouillent automatiquement à leur place après chaque session.</p>
                                     </div>
                                 </div>
                             </div>

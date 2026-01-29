@@ -9,24 +9,24 @@ export const UNIVERSES_DATA: UniverseData[] = [
     image: "/assets/universes/galactic-wars-main.png",
     gallery: ["/assets/universes/galactic-wars-detail-1.png", "/assets/universes/galactic-wars-detail-2.png"],
     tags: ["Sci-Fi", "Space Opera", "Hacking"],
-    desc: "Un décor futuriste aux panneaux blancs immaculés et néons bleutés. Les joueurs doivent réactiver les boucliers du vaisseau avant l'arrivée de l'Empire.",
-    fullDescription: "Plongez vos invités au cœur d'un croiseur interstellaire en perdition. 'Galactic Wars' transforme une pièce standard en cockpit futuriste grâce à un habillage mural modulaire blanc laqué et rétro-éclairé. L'expérience commence dès l'entrée : l'éclairage passe au rouge, une alarme sourde retentit. Les joueurs ne sont plus des locataires, ce sont des pilotes rebelles.",
+    desc: "Un kit technologique qui transforme une table basse en cockpit. Les joueurs doivent réactiver les systèmes via une console physique avant l'arrivée de l'Empire.",
+    fullDescription: "Plongez vos invités au cœur d'un croiseur interstellaire. Le module principal est un caisson 'Console de Vol' qui se pose sur n'importe quel meuble existant. Une fois activé, il projette une interface holographique au mur et déploie des commandes physiques. L'expérience inclut des objets à manipuler : cristaux d'énergie, cartes d'accès magnétiques et un cube de données.",
     difficulty: 'Expert',
     stats: { search: 2, manipulation: 4, reasoning: 5 },
     specs: {
       surface: "30-60m²",
       players: "3 à 6 Joueurs",
-      tech: ["Serrure Biométrique", "Holo-Projecteurs", "Portes Automatiques"]
+      tech: ["Interface Tactile", "Maglocks", "Audio Intégré"]
     },
-    storyHook: "Alerte Rouge. Le générateur principal est hors ligne. Vous avez 60 minutes pour pirater le terminal de commande et passer en hyper-espace.",
+    storyHook: "Alerte Rouge. Le générateur principal est hors ligne. Vous avez 60 minutes pour pirater le terminal et passer en hyper-espace.",
     gameplayFeatures: [
-      "Pirater le terminal de commande (tablette tactile encastrée)",
-      "Réparer le circuit de refroidissement (puzzles magnétiques physiques)",
-      "Synchroniser les clés de tir (coopération simultanée)",
-      "Activer l'Hyper-Drive (levier industriel)"
+      "Pirater le terminal (console aluminium anodisé)",
+      "Insérer les Cristaux d'Énergie dans le réacteur",
+      "Décrypter le Cube de Données (objet physique)",
+      "Synchroniser les clés de tir"
     ],
     atmosphere: ["Alerte Rouge", "Fumée Cryogénique", "Synthwave", "Métal Froid"],
-    hardwareDetails: "Le kit inclut 4 panneaux muraux 'SpaceHull' avec LEDs adressables intégrées, un module 'Console Centrale' remplaçant un bureau standard, et un système audio 5.1 dissimulé.",
+    hardwareDetails: "Le kit contient : 1 Console de Commandement (métal & plexiglass), 1 Cube Holocron lumineux, 3 Cristaux d'énergie résine, 1 Projecteur d'ambiance LED.",
     videoUrl: "/assets/videos/galactic-wars.mp4"
   },
   {
@@ -36,24 +36,24 @@ export const UNIVERSES_DATA: UniverseData[] = [
     image: "/assets/universes/magic-school-main.png",
     gallery: ["/assets/universes/magic-school-detail-1.png", "/assets/universes/magic-school-detail-2.png"],
     tags: ["Fantastique", "Château", "Familial"],
-    desc: "Transformez votre bien en dortoir d'école de magie. Tableaux qui bougent, cheminée secrète et potions fumantes au programme.",
-    fullDescription: "Une ode à la magie victorienne et aux mystères ancestraux. Cet univers s'intègre parfaitement dans les immeubles anciens ou haussmanniens. Le mobilier en chêne massif cache des compartiments secrets qui ne s'ouvrent qu'avec des baguettes magiques (fournies et sécurisées). L'ambiance est chaleureuse, feutrée, mais pleine de surprises technologiques invisibles.",
+    desc: "Une malle ancienne qui recèle des trésors. Baguettes magiques, potions réactives et parchemins invisibles pour une chasse au trésor envoûtante.",
+    fullDescription: "Une ode à la magie victorienne livrée dans une véritable malle de voyage en cuir et bois. À l'intérieur : tout le nécessaire pour transformer le salon. Des cadres photo numériques déguisés en tableaux anciens, des fioles de potions qui changent de couleur, et une baguette magique qui interagit réellement avec le coffre principal.",
     difficulty: 'Initié',
     stats: { search: 4, manipulation: 5, reasoning: 3 },
     specs: {
       surface: "20-50m²",
       players: "2 à 5 Joueurs",
-      tech: ["Baguettes IR", "Bibliothèque Pivotante", "Bougies Lévitation"]
+      tech: ["Baguettes IR", "Encre E-Ink", "Serrure Magnétique"]
     },
-    storyHook: "La légende raconte que la Pierre de Lune est cachée dans ce bureau. Seuls ceux qui maîtrisent le sortilège de 'Revelio' pourront ouvrir le coffre.",
+    storyHook: "La Pierre de Lune est cachée dans cette malle scellée par un sortilège. Seuls les sorciers émérites pourront l'ouvrir.",
     gameplayFeatures: [
-      "Lancer des sorts avec une baguette connectée (technologie IR)",
-      "Décrypter les grimoires à l'encre sympathique (UV)",
-      "Ouvrir la bibliothèque secrète en trouvant le bon livre",
-      "Préparer une potion (colorimétrie liquide)"
+      "Ouvrir la Malle aux Secrets (mécanisme invisible)",
+      "Révéler l'encre invisible avec la Pierre de Lune",
+      "Assembler les reliques physiques",
+      "Mélanger les potions (chimie sans danger)"
     ],
     atmosphere: ["Bois Ancien", "Parchemin", "Crépitement de Feu", "Mystère"],
-    hardwareDetails: "Bibliothèque en chêne avec servomoteurs silencieux. Cadres numériques dissimulés dans des miroirs sans tain. Système de diffusion d'odeur 'Vieux Livre' et 'Cire'.",
+    hardwareDetails: "Le kit contient : 1 Malle 'Magique' motorisée (chêne), 2 Baguettes connectées (IR), 1 Grimoire à encre thermique, Set de 5 fioles en verre.",
     videoUrl: "/assets/videos/magic-school.mp4"
   },
   {
@@ -63,24 +63,24 @@ export const UNIVERSES_DATA: UniverseData[] = [
     image: "/assets/universes/pandora-main.png",
     gallery: ["/assets/universes/pandora-detail-1.png", "/assets/universes/pandora-detail-2.png"],
     tags: ["Bio-Luminescence", "Zen", "Sensoriel"],
-    desc: "Une immersion totale dans une jungle bioluminescente. Idéal pour une chambre relaxante qui se transforme en forêt enchantée la nuit.",
-    fullDescription: "Pandora est une expérience contemplative avant d'être un jeu. Le jour, c'est une chambre design aux accents végétaux. La nuit, la pièce s'éveille : les plantes artificielles s'illuminent, le plafond devient une canopée étoilée. Le but n'est pas de s'échapper, mais de rétablir l'harmonie en connectant les flux d'énergie (lumière) à travers la pièce.",
+    desc: "Un totem végétal interactif qui pulse au rythme de la musique. Une expérience sensorielle zen où il faut rétablir l'harmonie des éléments.",
+    fullDescription: "Pandora arrive sous la forme d'une magnifique sculpture en bois flotté et mousse stabilisée : le Totem. Il s'installe dans une chambre ou un salon. Les joueurs doivent manipuler des galets lumineux et toucher certaines zones du totem pour composer une mélodie et illuminer progressivement la pièce aux couleurs d'une aurore boréale.",
     difficulty: 'Découverte',
     stats: { search: 5, manipulation: 3, reasoning: 1 },
     specs: {
       surface: "Chambre - 20m²",
       players: "1 à 3 Joueurs",
-      tech: ["Fibre Optique", "Plantes Tactiles", "Diffuseur d'Odeurs"]
+      tech: ["Capteurs Capacitifs", "LEDs Adressables", "Audio Bluetooth"]
     },
-    storyHook: "La forêt vous parle. Connectez votre esprit à l'arbre des âmes (votre tête de lit interactive) pour rétablir l'harmonie dans la pièce.",
+    storyHook: "Le Coeur de la Forêt s'est éteint. Assemblez les pierres élémentaires sur le Totem pour réveiller la nature.",
     gameplayFeatures: [
-      "Toucher les plantes pour activer les sons (capacitif)",
-      "Orienter les cristaux de lumière",
-      "Méditation guidée par l'audio spatialisé",
-      "Séquence musicale collaborative"
+      "Disposer les Galets Lumineux sur le socle",
+      "Toucher l'écorce capacitive pour jouer des notes",
+      "Harmoniser les couleurs du Totem",
+      "Méditation guidée finale"
     ],
     atmosphere: ["Zen", "Organique", "Bioluminescence", "Sérénité"],
-    hardwareDetails: "Tête de lit avec fibre optique tissée. Capteurs capacitifs invisibles sous des surfaces en bois brut. Projecteur laser ciel étoilé intégré aux corniches.",
+    hardwareDetails: "Le kit contient : 1 Totem central (Bois flotté & LEDs), 4 Galets en verre dépoli (RFID), 1 Diffuseur d'odeurs programmable, 1 Enceinte Bluetooth camouflée pierre.",
     videoUrl: "/assets/videos/pandora.mp4"
   },
   {
@@ -90,24 +90,24 @@ export const UNIVERSES_DATA: UniverseData[] = [
     image: "/assets/universes/suite-venus-main.png",
     gallery: ["/assets/universes/suite-venus-detail-1.png", "/assets/universes/suite-venus-detail-2.png"],
     tags: ["Romantique", "Couple", "Glamour"],
-    desc: "Une expérience conçue spécifiquement pour les couples. Un jeu de piste sensuel qui déverrouille des surprises (champagne, huiles) au fil de la soirée.",
-    fullDescription: "La Suite Vénus redéfinit le concept de Love Room en y ajoutant de l'élégance et de la narration. Pas de vulgarité ici, mais un jeu de séduction orchestré par la domotique. L'intensité lumineuse, la musique et même la température s'adaptent à la progression du couple dans leur découverte des '7 Péchés Capitaux' cachés dans la pièce.",
+    desc: "Un coffret à bijoux élégant et mystérieux posé sur la commode. Il contient les clés d'une soirée inoubliable, à gagner étape par étape.",
+    fullDescription: "Oubliez les installations vulgaires. Suite Vénus est un objet d'art : Un coffret laqué noir et or. Pour l'ouvrir, le couple doit résoudre des énigmes sensorielles disséminées dans la pièce via des petits modules discrets (un miroir à main connecté, un cadenas à code poétique, une plume scellée).",
     difficulty: 'Découverte',
     stats: { search: 2, manipulation: 3, reasoning: 2 },
     specs: {
       surface: "Suite Parentale",
       players: "Couple",
-      tech: ["Lumières Tamisées", "Lit Suspendu", "Audio Sync"]
+      tech: ["Capteurs Gyro", "Verrouillage Bluetooth", "Miroir Infini"]
     },
-    storyHook: "Retrouvez les 7 clés du désir cachées dans la suite pour ouvrir le coffret secret. Une aventure intime où la communication est la clé.",
+    storyHook: "7 plaisirs sont enfermés dans ce coffret. Le premier s'ouvre avec un baiser... Trouvez comment débloquer les suivants.",
     gameplayFeatures: [
-      "Chasse au trésor sensorielle",
-      "Quiz de couple sur tablette miroir",
-      "Déverrouillage progressif du minibar (Champagne)",
-      "Scénario lumière 'Crescendo'"
+      "Manipuler le Cube du Désir (gyroscope)",
+      "Décoder le message sur le Miroir à main",
+      "Trouver la clé magnétique cachée",
+      "Ouverture finale du Coffret (Champagne & Huiles)"
     ],
     atmosphere: ["Velours Rouge", "Or", "Jazz Lounge", "Intimité"],
-    hardwareDetails: "Coffre-fort à ouverture décalée. Miroir connecté. Lit à baldaquin avec structure renforcée et éclairage LED indirect. Isolation phonique renforcée.",
+    hardwareDetails: "Le kit contient : 1 Coffret 'Vénus' à compartiments secrets, 1 Miroir à main connecté, 1 Cube gyroscopique ornementé, Accessoires sensuels (plume, bandeau).",
     videoUrl: "/assets/videos/suite-venus.mp4"
   },
   {
@@ -117,24 +117,24 @@ export const UNIVERSES_DATA: UniverseData[] = [
     image: "/assets/universes/darkness-main.png",
     gallery: ["/assets/universes/darkness-detail-1.png", "/assets/universes/darkness-detail-2.png"],
     tags: ["Horreur", "Adrénaline", "Survivre"],
-    desc: "Pour les amateurs de frissons forts. Une ambiance pesante, des lumières qui vacillent et des bruits inexpliqués. Déconseillé aux âmes sensibles.",
-    fullDescription: "Transformez une cave ou un sous-sol inexploité en attraction majeure. Darkness joue sur la privation sensorielle et la peur suggérée. Grâce à un système audio 3D binaural et des jets d'air comprimé, la pièce semble 'vivante'. C'est notre module le plus technique, capable de détecter le rythme cardiaque des joueurs pour adapter l'intensité des effets.",
+    desc: "Une antique radio qui se met à grésiller et une boîte à fusibles inquiétante. Un kit compact pour transformer n'importe quelle cave en film d'horreur.",
+    fullDescription: "Le module 'Darkness' tient dans une caisse à outils rouillée. À l'intérieur : un vieux tableau électrique factice à recâbler, une radio vintage qui diffuse des messages d'outre-tombe, et une lampe torche qui a 'sa propre volonté' (elle s'éteint et clignote seule). L'angoisse naît des objets eux-mêmes.",
     difficulty: 'Expert',
     stats: { search: 4, manipulation: 2, reasoning: 4 },
     specs: {
       surface: "Cave / Sous-sol",
       players: "2 à 4 Joueurs",
-      tech: ["Stroboscopes", "Air Blasts", "Capteurs de Mouvement"]
+      tech: ["Capteurs de Mouvement", "Audio Spatialisé", "Lumière UV"]
     },
-    storyHook: "Vous êtes enfermés. L'électricité est coupée. Quelque chose respire dans le noir avec vous. Trouvez le disjoncteur avant qu'il ne vous trouve.",
+    storyHook: "La radio s'est allumée toute seule. 'Ils arrivent... Coupez le courant !'. Vous avez 10 minutes pour réparer la boîte à fusibles.",
     gameplayFeatures: [
-      "Réactiver le courant (tableau électrique complexe)",
-      "Échapper aux caméras de surveillance",
-      "Déchiffrer les messages UV sur les murs",
-      "Survivre au 'Blackout' total"
+      "Réparer le Tableau Électrique (câbles physiques)",
+      "Régler la fréquence de la Radio Maudite",
+      "Utiliser la Lampe Torche traîtresse (UV)",
+      "Survivre aux bruits spatiaux"
     ],
     atmosphere: ["Industriel", "Clignotements", "Sons 3D", "Angoisse"],
-    hardwareDetails: "Système de jets d'air (Air Blasts) dans les plinthes. Éclairage stroboscopique DMX. Haut-parleurs vibrants dans le sol. Verrouillage magnétique de sécurité 'Panic Release'.",
+    hardwareDetails: "Le kit contient : 1 Tableau électrique factice (fusibles & câbles), 1 Radio Vintage modifiée (audio + cachette), 1 Lampe Torche connectée, 1 Module Sonore à vibration.",
     videoUrl: "/assets/videos/darkness.mp4"
   }
 ];
