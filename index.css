@@ -15,6 +15,10 @@
 @layer base {
   body {
     @apply bg-lore-main text-lore-light antialiased overflow-x-hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
   /* Prevent iOS Zoom on inputs */

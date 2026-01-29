@@ -10,13 +10,17 @@ import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { PageTransition } from './components/PageTransition';
 import { BackgroundEffect } from './components/BackgroundEffect';
 import { ScrollToTop } from './components/ScrollToTop';
+import { ScrollToHash } from './components/ScrollToHash';
+import { useSiteProtection } from './components/hooks/useSiteProtection';
 import { DeploymentPage } from './pages/DeploymentPage';
 import { ConceptPage } from './pages/ConceptPage';
 import { TargetPage } from './pages/TargetPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { Analytics } from './services/Analytics';
 
 // Separate component to use Router hooks
 const ScrollAwareApp = () => {
+    useSiteProtection();
     useScrollReveal();
     const location = useLocation();
 
@@ -31,6 +35,7 @@ const ScrollAwareApp = () => {
 
             <BackgroundEffect />
             <ScrollToTop />
+            <ScrollToHash />
             <Header />
             <AnimatePresence mode="wait">
                 {/* @ts-ignore - version mismatch with types, but standard framer motion pattern */}
@@ -65,6 +70,7 @@ const ScrollAwareApp = () => {
                             <DeploymentPage />
                         </PageTransition>
                     } />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </AnimatePresence>
             <Footer />

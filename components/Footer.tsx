@@ -31,6 +31,7 @@ export const Footer: React.FC = () => {
                                 <li><Link to="/univers" className="hover:text-lore-gold transition-colors">Nos Univers</Link></li>
                                 <li><a href="/#targets" className="hover:text-lore-gold transition-colors">Conciergeries</a></li>
                                 <li><a href="/#contact" className="hover:text-lore-gold transition-colors">Devenir Partenaire</a></li>
+                                <li><span className="text-lore-muted/50 text-xs mt-4 block">Mentions Légales & CGV</span></li>
                             </ul>
                         </div>
                     </div>
