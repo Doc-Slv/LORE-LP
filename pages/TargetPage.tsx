@@ -5,6 +5,7 @@ import { GoldButton } from '../components/GoldButton';
 import { Link } from 'react-router-dom';
 import { Fingerprint, TrendingUp, Sparkles, Check, ArrowRight, Star, Zap, Trophy } from 'lucide-react';
 import { TiltCard } from '../components/TiltCard';
+import { MetricsSection } from '../components/MetricsSection';
 
 export const TargetPage: React.FC = () => {
     const [activeProfile, setActiveProfile] = useState<'unique' | 'yield' | 'turnkey'>('unique');
@@ -30,8 +31,8 @@ export const TargetPage: React.FC = () => {
             subtitle: "Visez le tarif 'Nuit Insolite'",
             description: "Pourquoi louer au prix du marché quand on peut proposer une expérience premium ? En vendant une 'aventure' et non juste un lit, vous justifiez un prix nuitée nettement supérieur.",
             stats: [
-                { label: "Prix Nuitée", value: "+40%", icon: <TrendingUp size={16} /> },
-                { label: "Taux Occupation", value: "90%+", icon: <Zap size={16} /> },
+                { label: "Prix Nuitée", value: "+30%", icon: <TrendingUp size={16} /> },
+                { label: "Taux Occupation", value: "85%", icon: <Zap size={16} /> },
                 { label: "ROI", value: "< 18 mois", icon: <Star size={16} /> },
             ],
             benefits: [
@@ -181,6 +182,8 @@ export const TargetPage: React.FC = () => {
                     </AnimatePresence>
                 </div>
             </div>
+
+            <MetricsSection />
         </div>
     );
 };

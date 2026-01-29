@@ -47,7 +47,7 @@ export const Targets: React.FC = () => {
             subtitle: "L'Approche Yield",
             desc: "Vendez une expérience, pas une nuit. Justifiez un tarif nuitée supérieur grâce à la valeur ajoutée.",
             stat: "Prix Nuitée",
-            statValue: "+40%"
+            statValue: "+30%"
         },
         {
             id: 'turnkey',
